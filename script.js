@@ -19,9 +19,14 @@ function hslToHex(h, s, l) {
 
 // Función para actualizar el resumen (Sacada afuera para que funcione siempre)
 function actualizarResumen() {
-    const cant = selectCant.value;
+    const cant = parseInt(selectCant.value);
     const form = selectFormato.value;
     const bri = selectBrillo.options[selectBrillo.selectedIndex].text;
+    
+    const esDemo = (cant === 12);
+    selectFormato.disabled = esDemo;
+    selectFormato.style.opacity = esDemo ? "0.5" : "1";
+    selectFormato.style.cursor = esDemo ? "not-allowed" : "default";
 
     const resumenElemento = document.getElementById('resumen-texto');
     if (resumenElemento) {
@@ -44,8 +49,14 @@ function generarPaleta() {
     manchasViejas.forEach(m => m.remove());
 
     const cantidad = parseInt(selectCant.value);
+    const esDemo = (cantidad === 12);
     const brilloManual = parseInt(selectBrillo.value);
     const radio = 200;
+
+    // BLOQUEO DE SELECTOR: Si es demo, deshabilitamos el selector de formato
+    selectFormato.disabled = esDemo;
+    if(esDemo) selectFormato.style.opacity = "0.5";
+    else selectFormato.style.opacity = "1";
 
     for (let i = 0; i < cantidad; i++) {
         const h = Math.floor(Math.random() * 361);
@@ -59,39 +70,42 @@ function generarPaleta() {
         const x = radio * Math.cos(angulo);
         const y = radio * Math.sin(angulo);
 
-        crearElementoMancha(x, y, hex, hslTexto, l);
+        crearElementoMancha(x, y, hex, hslTexto, l, esDemo);
     }
 }
 
-function crearElementoMancha(x, y, hex, hsl, l) {
+function crearElementoMancha(x, y, hex, hsl, l, esDemo) {
     const div = document.createElement('div');
-    div.className = 'mancha';
+    // Agregamos una clase extra si es demo para achicarlas por CSS
+    div.className = esDemo ? 'mancha mancha-demo' : 'mancha';
+    
     div.style.backgroundColor = hex;
     div.style.left = `calc(50% + ${x}px - 55px)`;
     div.style.top = `calc(50% + ${y}px - 55px)`;
 
     const span = document.createElement('span');
     span.className = 'codigo-texto';
-    span.textContent = hex; // Visible siempre por consigna [cite: 64]
+    
+    // CAMBIO: Si es demo, mostramos HSL de entrada. Si no, HEX.
+    span.textContent = esDemo ? hsl : hex;
 
-    // Ajuste de contraste para accesibilidad [cite: 79]
     span.style.color = l > 60 ? '#000' : '#fff';
-    if (l > 60) {
-        span.style.background = "rgba(255,255,255,0.3)";
+    span.style.background = l > 60 ? "rgba(255,255,255,0.3)" : "transparent";
+
+    if (esDemo) {
+        div.style.cursor = "not-allowed";
+        div.addEventListener('click', () => {
+            mostrarToast("⚠️ Formato HSL solo disponible para previsualización en Demo.");
+        });
     } else {
-        span.style.background = "transparent";
+        div.addEventListener('mouseenter', () => span.textContent = hsl);
+        div.addEventListener('mouseleave', () => span.textContent = hex);
+        div.addEventListener('click', () => {
+            const valor = (selectFormato.value === 'HSL') ? hsl : hex;
+            navigator.clipboard.writeText(valor);
+            mostrarToast(`¡Copiado: ${valor}!`);
+        });
     }
-
-    div.addEventListener('mouseenter', () => span.textContent = hsl);
-    div.addEventListener('mouseleave', () => span.textContent = hex);
-
-    div.addEventListener('click', () => {
-        const formatoActual = selectFormato.value;
-        const valorACopiar = (formatoActual === 'HSL') ? hsl : hex;
-
-        navigator.clipboard.writeText(valorACopiar);
-        mostrarToast(`¡Copiado en ${formatoActual}: ${valorACopiar}!`); // Microfeedback [cite: 77]
-    });
 
     div.appendChild(span);
     rueda.appendChild(div);

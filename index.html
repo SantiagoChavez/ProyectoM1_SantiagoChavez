@@ -11,18 +11,19 @@
 <body>
     <div class="app-container">
         <aside class="panel-controles">
-            <header>
-                <h1 class="brand">Colorfly Studio</h1>
-                <p class="subtitle">Generador de Paletas</p>
-            </header>
+            <div class="brand">
+                <h1><span class="color-text">Color</span><span class="fly-text">fly</span> Studio</h1>
+                <p>Generador de Paletas</p>
+            </div>
 
-            <section class="configuracion">
+            <div class="configuracion-grupo">
                 <div class="control-grupo">
                     <label for="cantidad">Cantidad de colores:</label>
                     <select id="cantidad">
                         <option value="6">6 Colores</option>
                         <option value="8">8 Colores</option>
                         <option value="9">9 Colores</option>
+                        <option value="12">12 Colores (Demo - Solo vista)</option>
                     </select>
                 </div>
 
@@ -45,13 +46,14 @@
 
                 <div class="resumen-config">
                     <h3>Tu configuración:</h3>
-                    <p id="resumen-texto">Paleta de 6 colores, formato HEX, brillo Medio.</p>
+                    <p id="resumen-texto">Cargando...</p>
                 </div>
+
                 <div class="acciones">
                     <button id="btn-generar">Generar Paleta</button>
                     <button id="btn-limpiar">Limpiar</button>
                 </div>
-            </section>
+            </div>
         </aside>
 
         <main class="escenario">
