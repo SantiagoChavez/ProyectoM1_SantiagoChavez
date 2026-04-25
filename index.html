@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Colorfly - Rueda Cromática</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <div class="app-container">
         <aside class="panel-controles">
@@ -23,7 +25,28 @@
                         <option value="9">9 Colores</option>
                     </select>
                 </div>
-                
+
+                <div class="control-grupo">
+                    <label for="brillo">Tono de la paleta:</label>
+                    <select id="brillo">
+                        <option value="85">Pastel (Claro)</option>
+                        <option value="50" selected>Vibrante (Medio)</option>
+                        <option value="30">Oscuro (Bajo)</option>
+                    </select>
+                </div>
+
+                <div class="control-grupo">
+                    <label for="formato">Formato para copiar:</label>
+                    <select id="formato">
+                        <option value="HEX" selected>HEX</option>
+                        <option value="HSL">HSL</option>
+                    </select>
+                </div>
+
+                <div class="resumen-config">
+                    <h3>Tu configuración:</h3>
+                    <p id="resumen-texto">Paleta de 6 colores, formato HEX, brillo Medio.</p>
+                </div>
                 <div class="acciones">
                     <button id="btn-generar">Generar Paleta</button>
                     <button id="btn-limpiar">Limpiar</button>
@@ -34,7 +57,7 @@
         <main class="escenario">
             <div id="rueda-container">
                 <div class="centro-info">
-                    <span>Click sobre el color para copiar HEX</span>
+                    <span>Click sobre el color para copiar</span>
                 </div>
             </div>
         </main>
@@ -43,4 +66,5 @@
     <div id="toast"></div>
     <script src="script.js"></script>
 </body>
+
 </html>

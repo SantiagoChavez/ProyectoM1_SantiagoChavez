@@ -1,23 +1,54 @@
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
 
-body { background-color: #f0f2f5; height: 100vh; overflow: hidden; }
+body {
+    background-color: #f0f2f5;
+    height: 100vh;
+    overflow: hidden;
+}
 
-.app-container { display: flex; height: 100vh; }
+.app-container {
+    display: flex;
+    height: 100vh;
+}
 
 /* PANEL LATERAL */
 .panel-controles {
     width: 300px;
     background: #fff;
     padding: 30px;
-    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     gap: 30px;
 }
 
-.brand { color: #5d4037; font-size: 1.8rem; }
-.control-grupo label { display: block; margin-bottom: 10px; font-weight: bold; }
-#cantidad { width: 100%; padding: 10px; border-radius: 5px; }
+.brand {
+    color: #5d4037;
+    font-size: 1.8rem;
+}
+
+.control-grupo {
+    margin-bottom: 20px; /* Aumenta este número para separar más los selectores */
+    display: flex;
+    flex-direction: column;
+}
+
+.control-grupo label {
+    margin-bottom: 8px; /* Espacio entre el texto y el cuadrito del selector */
+    font-weight: bold;
+    color: #5d4037;
+}
+
+#cantidad {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+}
 
 .acciones button {
     width: 100%;
@@ -29,11 +60,24 @@ body { background-color: #f0f2f5; height: 100vh; overflow: hidden; }
     font-weight: bold;
 }
 
-#btn-generar { background: #4caf50; color: white; }
-#btn-limpiar { background: #a67c52; color: white; }
+#btn-generar {
+    background: #4caf50;
+    color: white;
+}
+
+#btn-limpiar {
+    background: #a67c52;
+    color: white;
+}
 
 /* ÁREA DE LA RUEDA */
-.escenario { flex: 1; display: flex; justify-content: center; align-items: center; position: relative; }
+.escenario {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
 
 #rueda-container {
     width: 500px;
@@ -54,7 +98,7 @@ body { background-color: #f0f2f5; height: 100vh; overflow: hidden; }
     align-items: center;
     font-size: 0.8rem;
     color: #888;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     z-index: 5;
 }
 
@@ -70,15 +114,98 @@ body { background-color: #f0f2f5; height: 100vh; overflow: hidden; }
     align-items: center;
     cursor: pointer;
     transition: transform 0.3s ease;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.mancha:hover { transform: scale(1.1); z-index: 10; }
+.mancha:hover {
+    transform: scale(1.1);
+    z-index: 10;
+}
 
 .codigo-texto {
     font-size: 0.75rem;
     font-weight: bold;
     padding: 2px 6px;
-    background: rgba(255,255,255,0.3);
+    background: rgba(255, 255, 255, 0.3);
     border-radius: 4px;
+}
+
+#toast {
+    visibility: hidden;
+    min-width: 250px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 8px;
+    padding: 16px;
+    position: fixed;
+    z-index: 100;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
+    font-size: 0.9rem;
+}
+
+#toast.show {
+    visibility: visible;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+.selectores-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.resumen-config {
+    margin: 20px 0; /* Espacio arriba y abajo de la sección de resumen */
+    padding: 15px;
+    background-color: #fcfaf9; /* Un color apenas distinto al fondo */
+    border-left: 4px solid #a67c52; /* Una barrita de color al costado queda muy pro */
+    border-radius: 5px;
+}
+
+.resumen-config h3 {
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+    color: #8d6e63;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.resumen-config p {
+    font-size: 0.9rem;
+    line-height: 1.6; /* Esto separa las líneas del resumen */
+    color: #444;
+}
+
+.acciones {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espacio directo entre el botón Generar y Limpiar */
+    margin-top: 10px;
+}
+
+@keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
 }
