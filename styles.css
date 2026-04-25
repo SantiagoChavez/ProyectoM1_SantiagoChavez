@@ -1,0 +1,84 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+
+body { background-color: #f0f2f5; height: 100vh; overflow: hidden; }
+
+.app-container { display: flex; height: 100vh; }
+
+/* PANEL LATERAL */
+.panel-controles {
+    width: 300px;
+    background: #fff;
+    padding: 30px;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.brand { color: #5d4037; font-size: 1.8rem; }
+.control-grupo label { display: block; margin-bottom: 10px; font-weight: bold; }
+#cantidad { width: 100%; padding: 10px; border-radius: 5px; }
+
+.acciones button {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#btn-generar { background: #4caf50; color: white; }
+#btn-limpiar { background: #a67c52; color: white; }
+
+/* ÁREA DE LA RUEDA */
+.escenario { flex: 1; display: flex; justify-content: center; align-items: center; position: relative; }
+
+#rueda-container {
+    width: 500px;
+    height: 500px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.centro-info {
+    width: 120px;
+    height: 120px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    font-size: 0.8rem;
+    color: #888;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    z-index: 5;
+}
+
+/* LAS MANCHAS (Se posicionan vía JS) */
+.mancha {
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.mancha:hover { transform: scale(1.1); z-index: 10; }
+
+.codigo-texto {
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 2px 6px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 4px;
+}
