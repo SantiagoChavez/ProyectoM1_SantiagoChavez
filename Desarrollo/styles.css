@@ -1,0 +1,300 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f0f2f5;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.app-container {
+    display: flex;
+    height: 100vh;
+}
+
+/* PANEL LATERAL */
+.panel-controles {
+    width: 320px;
+    background-color: rgba(255, 255, 255, 0.7); /* Fondo traslúcido para ver los puntos */
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #f2e9e4;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* Capa de puntitos del fondo del Aside */
+.panel-controles::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: radial-gradient(#a69b93 1px, transparent 1px);
+    background-size: 20px 20px;
+    filter: blur(1.5px);
+    opacity: 0.4;
+    z-index: -1;
+}
+
+/* TARJETA DE MARCA (Colorfly Studio) */
+.brand {
+    background: linear-gradient(135deg, rgba(243, 136, 6, 0.12), rgba(0, 112, 243, 0.12)), #ffffff;
+    border: 2px solid rgba(166, 155, 147, 0.3);
+    padding: 35px 20px;
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    margin-bottom: 60px;
+    text-align: center;
+    position: relative;
+    z-index: 5;
+}
+
+.brand h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.1;
+    margin-bottom: 10px;
+}
+
+.color-text { color: #2984eb; } /* Azul Colorfly */
+.fly-text { color: #ff8c00; }   /* Naranja Colorfly */
+
+.brand p {
+    font-size: 0.85rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* BLOQUE DE CONFIGURACIÓN */
+.configuracion-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 10px;
+    position: relative;
+    z-index: 2;
+}
+
+.control-grupo {
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+}
+
+.control-grupo:focus-within {
+    transform: translateX(5px);
+}
+
+.control-grupo label {
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #5d4037;
+    font-size: 0.9rem;
+}
+
+/* SELECTORES ESTILIZADOS */
+#cantidad, #brillo, #formato {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    color: #5d4037;
+    font-size: 0.9rem;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+#cantidad:hover, #brillo:hover, #formato:hover {
+    border-color: #ff8c00;
+    background-color: #fffaf5;
+}
+
+#cantidad:focus, #brillo:focus, #formato:focus {
+    border-color: #2984eb;
+    box-shadow: 0 0 0 3px rgba(41, 132, 235, 0.1);
+}
+
+/* BOTONES */
+.acciones {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.acciones button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+#btn-generar { background: #4caf50; color: white; }
+#btn-limpiar { background: #a67c52; color: white; }
+#btn-generar:hover { background: #43a047; transform: scale(1.02); }
+#btn-limpiar:hover { transform: scale(1.02); }
+
+/* ÁREA DE LA RUEDA Y ESCENARIO */
+.escenario {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: #f8f9fa;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Efecto alas de mariposa en el fondo */
+.escenario::before, .escenario::after {
+    content: '';
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    filter: blur(70px);
+    z-index: -1;
+    opacity: 0.35;
+    animation: volar 12s infinite alternate;
+}
+
+.escenario::before {
+    top: -100px;
+    left: -100px;
+    background: linear-gradient(45deg, #ff0080, #ff8c00, #ffd700);
+}
+
+.escenario::after {
+    bottom: -100px;
+    right: -100px;
+    background: linear-gradient(-45deg, #7928ca, #0070f3, #00dfd8);
+    animation-delay: -6s;
+}
+
+@keyframes volar {
+    from { transform: rotate(0deg) scale(1); }
+    to { transform: rotate(15deg) scale(1.05); }
+}
+
+#rueda-container {
+    width: 500px;
+    height: 500px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.08));
+}
+
+.centro-info {
+    width: 130px;
+    height: 130px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    padding: 10px;
+    font-size: 0.75rem;
+    color: #999;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    z-index: 5;
+}
+
+/* MANCHAS (Colores) */
+.mancha {
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.mancha:hover { transform: scale(1.15); z-index: 20; }
+
+.mancha.mancha-demo { width: 90px; height: 90px; }
+
+.codigo-texto {
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Ajuste HSL largo en Modo Demo */
+.mancha.mancha-demo .codigo-texto {
+    font-size: 0.55rem;
+    padding: 2px 4px;
+    letter-spacing: -0.2px;
+}
+
+/* RESUMEN Y TOAST */
+.resumen-config {
+    padding: 15px;
+    background-color: #fcfaf9;
+    border-left: 4px solid #a67c52;
+    border-radius: 5px;
+    font-size: 0.85rem;
+}
+
+#toast {
+    visibility: hidden;
+    position: absolute;
+    /* Forzamos que se ubique respecto al centro exacto del padre */
+    top: 50%;
+    left: 50%;
+    /* El transform inicial debe incluir el centrado (-50%) */
+    transform: translate(-50%, -50%) scale(0.8);
+    
+    background-color: #2984eb;
+    color: #fff;
+    text-align: center;
+    border-radius: 50px;
+    padding: 12px 24px;
+    z-index: 1000;
+    font-size: 0.9rem;
+    font-weight: 600;
+    white-space: nowrap;
+    box-shadow: 0 8px 25px rgba(41, 132, 235, 0.4);
+    pointer-events: none;
+    opacity: 0;
+}
+
+#toast.show {
+    visibility: visible;
+    /* Aumentamos la duración: 0.4s entra, se queda 2s, 0.5s sale */
+    animation: popInCenter 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, 
+               fadeOutCenter 0.5s 2.5s forwards; 
+}
+
+@keyframes popInCenter {
+    0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+    100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+@keyframes fadeOutCenter {
+    from { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    to { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+}
