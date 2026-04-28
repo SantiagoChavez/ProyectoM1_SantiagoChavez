@@ -1,3 +1,6 @@
+/* ==========================================================================
+   VARIABLES Y RESET
+   ========================================================================== */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
 * {
@@ -18,10 +21,12 @@ body {
     height: 100vh;
 }
 
-/* PANEL LATERAL */
+/* ==========================================================================
+   PANEL LATERAL (CONTROLES)
+   ========================================================================== */
 .panel-controles {
     width: 320px;
-    background-color: rgba(255, 255, 255, 0.7); /* Fondo traslúcido para ver los puntos */
+    background-color: rgba(255, 255, 255, 0.7);
     padding: 25px;
     display: flex;
     flex-direction: column;
@@ -31,11 +36,11 @@ body {
     overflow: hidden;
 }
 
-/* Capa de puntitos del fondo del Aside */
+/* Efecto de textura puntillista con desenfoque */
 .panel-controles::before {
     content: '';
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
+    inset: 0;
     background-image: radial-gradient(#a69b93 1px, transparent 1px);
     background-size: 20px 20px;
     filter: blur(1.5px);
@@ -43,12 +48,11 @@ body {
     z-index: -1;
 }
 
-/* TARJETA DE MARCA (Colorfly Studio) */
+/* Tarjeta de Marca */
 .brand {
     background: linear-gradient(135deg, rgba(243, 136, 6, 0.12), rgba(0, 112, 243, 0.12)), #ffffff;
     border: 2px solid rgba(166, 155, 147, 0.3);
     padding: 35px 20px;
-    width: 100%;
     border-radius: 20px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
     margin-bottom: 60px;
@@ -64,8 +68,16 @@ body {
     margin-bottom: 10px;
 }
 
-.color-text { color: #2984eb; } /* Azul Colorfly */
-.fly-text { color: #ff8c00; }   /* Naranja Colorfly */
+.color-text {
+    color: #2984eb;
+}
+
+/* Azul Colorfly */
+.fly-text {
+    color: #ff8c00;
+}
+
+/* Naranja Colorfly */
 
 .brand p {
     font-size: 0.85rem;
@@ -74,13 +86,11 @@ body {
     letter-spacing: 2px;
 }
 
-/* BLOQUE DE CONFIGURACIÓN */
+/* Bloques de Configuración */
 .configuracion-grupo {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    margin-top: 10px;
-    position: relative;
     z-index: 2;
 }
 
@@ -101,8 +111,10 @@ body {
     font-size: 0.9rem;
 }
 
-/* SELECTORES ESTILIZADOS */
-#cantidad, #brillo, #formato {
+/* Selectores Estilizados */
+#cantidad,
+#brillo,
+#formato {
     width: 100%;
     padding: 10px;
     border-radius: 8px;
@@ -111,21 +123,25 @@ body {
     color: #5d4037;
     font-size: 0.9rem;
     cursor: pointer;
-    outline: none;
     transition: all 0.3s ease;
 }
 
-#cantidad:hover, #brillo:hover, #formato:hover {
+#cantidad:hover,
+#brillo:hover,
+#formato:hover {
     border-color: #ff8c00;
     background-color: #fffaf5;
 }
 
-#cantidad:focus, #brillo:focus, #formato:focus {
+#cantidad:focus,
+#brillo:focus,
+#formato:focus {
+    outline: none;
     border-color: #2984eb;
     box-shadow: 0 0 0 3px rgba(41, 132, 235, 0.1);
 }
 
-/* BOTONES */
+/* Botones de Acción */
 .acciones {
     display: flex;
     flex-direction: column;
@@ -141,32 +157,42 @@ body {
     cursor: pointer;
     font-weight: bold;
     transition: 0.2s;
+    color: white;
 }
 
-#btn-generar { background: #4caf50; color: white; }
-#btn-limpiar { background: #a67c52; color: white; }
-#btn-generar:hover { background: #43a047; transform: scale(1.02); }
-#btn-limpiar:hover { transform: scale(1.02); }
+#btn-generar {
+    background: #4caf50;
+}
 
-/* ÁREA DE LA RUEDA Y ESCENARIO */
+#btn-limpiar {
+    background: #a67c52;
+}
+
+.acciones button:hover {
+    transform: scale(1.02);
+    opacity: 0.9;
+}
+
+/* ==========================================================================
+   ESCENARIO (RUEDA Y ANIMACIONES)
+   ========================================================================== */
 .escenario {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
     background-color: #f8f9fa;
+    position: relative;
     overflow: hidden;
-    z-index: 1;
 }
 
-/* Efecto alas de mariposa en el fondo */
-.escenario::before, .escenario::after {
+/* Efecto de luces ambientales dinámicas */
+.escenario::before,
+.escenario::after {
     content: '';
     position: absolute;
     width: 650px;
     height: 650px;
-    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
     filter: blur(70px);
     z-index: -1;
     opacity: 0.35;
@@ -187,10 +213,16 @@ body {
 }
 
 @keyframes volar {
-    from { transform: rotate(0deg) scale(1); }
-    to { transform: rotate(15deg) scale(1.05); }
+    from {
+        transform: rotate(0deg) scale(1);
+    }
+
+    to {
+        transform: rotate(15deg) scale(1.05);
+    }
 }
 
+/* Contenedor de la Rueda */
 #rueda-container {
     width: 500px;
     height: 500px;
@@ -198,7 +230,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 10;
     filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.08));
 }
 
@@ -217,7 +248,7 @@ body {
     z-index: 5;
 }
 
-/* MANCHAS (Colores) */
+/* Manchas de Color */
 .mancha {
     position: absolute;
     width: 110px;
@@ -231,9 +262,15 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
-.mancha:hover { transform: scale(1.15); z-index: 20; }
+.mancha:hover {
+    transform: scale(1.15);
+    z-index: 20;
+}
 
-.mancha.mancha-demo { width: 90px; height: 90px; }
+.mancha.mancha-demo {
+    width: 90px;
+    height: 90px;
+}
 
 .codigo-texto {
     font-size: 0.7rem;
@@ -243,14 +280,13 @@ body {
     background: rgba(255, 255, 255, 0.3);
 }
 
-/* Ajuste HSL largo en Modo Demo */
 .mancha.mancha-demo .codigo-texto {
     font-size: 0.55rem;
-    padding: 2px 4px;
-    letter-spacing: -0.2px;
 }
 
-/* RESUMEN Y TOAST */
+/* ==========================================================================
+   FEEDBACK (TOAST Y RESUMEN)
+   ========================================================================== */
 .resumen-config {
     padding: 15px;
     background-color: #fcfaf9;
@@ -262,39 +298,46 @@ body {
 #toast {
     visibility: hidden;
     position: absolute;
-    /* Forzamos que se ubique respecto al centro exacto del padre */
     top: 50%;
     left: 50%;
-    /* El transform inicial debe incluir el centrado (-50%) */
     transform: translate(-50%, -50%) scale(0.8);
-    
     background-color: #2984eb;
     color: #fff;
-    text-align: center;
     border-radius: 50px;
     padding: 12px 24px;
     z-index: 1000;
-    font-size: 0.9rem;
     font-weight: 600;
-    white-space: nowrap;
-    box-shadow: 0 8px 25px rgba(41, 132, 235, 0.4);
-    pointer-events: none;
     opacity: 0;
+    pointer-events: none;
+    box-shadow: 0 8px 25px rgba(41, 132, 235, 0.4);
 }
 
 #toast.show {
     visibility: visible;
-    /* Aumentamos la duración: 0.4s entra, se queda 2s, 0.5s sale */
-    animation: popInCenter 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, 
-               fadeOutCenter 0.5s 2.5s forwards; 
+    animation: popInCenter 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
+        fadeOutCenter 0.5s 2.5s forwards;
 }
 
 @keyframes popInCenter {
-    0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
-    100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
 }
 
 @keyframes fadeOutCenter {
-    from { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-    to { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+    from {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.9);
+    }
 }

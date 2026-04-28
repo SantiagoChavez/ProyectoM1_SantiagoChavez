@@ -53,7 +53,7 @@ Para ejecutar este proyecto y evitar errores de seguridad (CORS), seguí estos p
 ---
 
 ## 🌐 Acceso a la Aplicación Online
-👉 **[VER COLORFLY STUDIO ONLINE](TU_LINK_DE_GITHUB_PAGES)**
+👉 **[VER COLORFLY STUDIO ONLINE](https://santiagochavez.github.io/ProyectoM1_SantiagoChavez/)**
 
 ---
 
