@@ -64,8 +64,18 @@ Como mencionamos en la documentación, este proyecto utiliza una jerarquía clar
 
 ---
 
+## 🔮 Próximas Mejoras (Roadmap)
+Como parte de la escalabilidad del proyecto, se han planificado las siguientes funcionalidades para futuras versiones:
+
+* **🔒 Bloqueo de Colores (Lock System):** Implementación de un estado de "congelado" para colores individuales. Esto permitirá al usuario mantener sus tonos favoritos mientras regenera el resto de la paleta.
+* **🛒 Carrito de Selección (Color History):** Un panel lateral que actúe como historial, guardando automáticamente cada color copiado durante la sesión para facilitar su exportación final en conjunto.
+* **🌓 Modo Oscuro/Claro:** Adaptación dinámica de la interfaz para trabajar cómodamente en diferentes entornos de iluminación.
+
+---
+
 ## 👤 Autor
-**Santiago Ezequiel Chavez** *Backend Developer Trainee / Junior*
+**Santiago Ezequiel Chavez** *Backend Developer Trainee / Junior*/
+
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/santiago-chavez480)
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/SantiagoChavez) 
