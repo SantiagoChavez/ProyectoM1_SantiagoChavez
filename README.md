@@ -57,6 +57,9 @@ Para ejecutar este proyecto y evitar errores de seguridad (CORS), seguí estos p
    * Hacé clic derecho sobre `index.html` y elegí **"Open with Live Server"**.
    * *Nota: No abrir haciendo doble clic directo sobre el archivo para asegurar que todas las funciones carguen correctamente.*
 
+4. **Tip para Devs**:
+   Podés usar la herramienta de inspección del navegador (**F12**) para probar la visualización en diferentes dispositivos móviles; la rueda y los botones se ajustarán automáticamente gracias al diseño responsivo implementado.
+
 ---
 
 ## 🌐 Acceso a la Aplicación Online
