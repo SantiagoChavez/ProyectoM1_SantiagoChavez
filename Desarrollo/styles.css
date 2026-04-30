@@ -90,7 +90,7 @@ body {
     z-index: 1;
 }
 
-/* Luces de Fondo */
+/* Luces Naranja y Azul Potentes */
 .escenario::before, .escenario::after {
     content: '';
     position: absolute;
@@ -166,37 +166,43 @@ body {
 }
 
 /* ==========================================================================
-   TOAST (CENTRADO FIJO)
+   TOAST (CENTRADO FIJO ABSOLUTO)
    ========================================================================== */
 #toast {
-    visibility: hidden; 
-    position: fixed; 
-    top: 50%; 
+    visibility: hidden;
+    position: absolute; /* Cambiamos de fixed a absolute */
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0.8);
-    background-color: #2984eb; 
-    color: #fff; 
+    
+    background-color: #2984eb;
+    color: #fff;
     border-radius: 50px;
-    padding: 12px 25px; 
-    z-index: 10000; 
-    font-weight: 600; 
+    padding: 12px 25px;
+    z-index: 10000;
+    font-weight: 600;
     opacity: 0;
-    text-align: center; 
+    text-align: center;
     min-width: 200px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    pointer-events: none;
+    white-space: nowrap; /* Evita que el texto se amontone */
 }
 
-#toast.show { 
-    visibility: visible; 
-    animation: popIn 0.4s forwards, fadeOut 0.5s 2.5s forwards; 
+#toast.show {
+    visibility: visible;
+    /* La animación DEBE mantener el translate para no moverse a la izquierda */
+    animation: popInCorrect 0.4s forwards, fadeOutCorrect 0.5s 2.5s forwards;
 }
 
-@keyframes popIn { 
-    to { transform: translate(-50%, -50%) scale(1); opacity: 1; } 
+@keyframes popInCorrect {
+    from { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+    to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
 }
 
-@keyframes fadeOut { 
-    from { opacity: 1; transform: translate(-50%, -50%) scale(1); } 
-    to { opacity: 0; transform: translate(-50%, -50%) scale(0.9); } 
+@keyframes fadeOutCorrect {
+    from { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    to { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
 }
 
 /* ==========================================================================
