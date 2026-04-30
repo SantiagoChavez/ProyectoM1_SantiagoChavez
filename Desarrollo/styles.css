@@ -32,11 +32,10 @@ body {
     flex-direction: column;
     border-right: 1px solid #f2e9e4;
     position: relative;
-    z-index: 1;
+    z-index: 5;
     overflow: hidden;
 }
 
-/* Efecto de textura puntillista con desenfoque */
 .panel-controles::before {
     content: '';
     position: absolute;
@@ -48,133 +47,37 @@ body {
     z-index: -1;
 }
 
-/* Tarjeta de Marca */
 .brand {
     background: linear-gradient(135deg, rgba(243, 136, 6, 0.12), rgba(0, 112, 243, 0.12)), #ffffff;
     border: 2px solid rgba(166, 155, 147, 0.3);
-    padding: 35px 20px;
+    padding: 30px 20px;
     border-radius: 20px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-    margin-bottom: 60px;
+    margin-bottom: 30px;
     text-align: center;
-    position: relative;
-    z-index: 5;
 }
 
-.brand h1 {
-    font-size: 2rem;
-    font-weight: 600;
-    line-height: 1.1;
-    margin-bottom: 10px;
+.brand h1 { font-size: 1.8rem; font-weight: 600; line-height: 1.1; margin-bottom: 10px; }
+.color-text { color: #2984eb; }
+.fly-text { color: #ff8c00; }
+.brand p { font-size: 0.8rem; color: #888; text-transform: uppercase; letter-spacing: 2px; }
+
+.configuracion-grupo { display: flex; flex-direction: column; gap: 12px; }
+.control-grupo { display: flex; flex-direction: column; }
+.control-grupo label { margin-bottom: 4px; font-weight: bold; color: #5d4037; font-size: 0.85rem; }
+
+#cantidad, #brillo, #formato {
+    width: 100%; padding: 8px; border-radius: 8px; border: 1px solid #ddd;
+    background-color: #fff; color: #5d4037; font-size: 0.9rem; cursor: pointer;
 }
 
-.color-text {
-    color: #2984eb;
-}
-
-/* Azul Colorfly */
-.fly-text {
-    color: #ff8c00;
-}
-
-/* Naranja Colorfly */
-
-.brand p {
-    font-size: 0.85rem;
-    color: #888;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-/* Bloques de Configuración */
-.configuracion-grupo {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    z-index: 2;
-}
-
-.control-grupo {
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.3s ease;
-}
-
-.control-grupo:focus-within {
-    transform: translateX(5px);
-}
-
-.control-grupo label {
-    margin-bottom: 6px;
-    font-weight: bold;
-    color: #5d4037;
-    font-size: 0.9rem;
-}
-
-/* Selectores Estilizados */
-#cantidad,
-#brillo,
-#formato {
-    width: 100%;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    background-color: #fff;
-    color: #5d4037;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-#cantidad:hover,
-#brillo:hover,
-#formato:hover {
-    border-color: #ff8c00;
-    background-color: #fffaf5;
-}
-
-#cantidad:focus,
-#brillo:focus,
-#formato:focus {
-    outline: none;
-    border-color: #2984eb;
-    box-shadow: 0 0 0 3px rgba(41, 132, 235, 0.1);
-}
-
-/* Botones de Acción */
-.acciones {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 5px;
-}
-
-.acciones button {
-    width: 100%;
-    padding: 12px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.2s;
-    color: white;
-}
-
-#btn-generar {
-    background: #4caf50;
-}
-
-#btn-limpiar {
-    background: #a67c52;
-}
-
-.acciones button:hover {
-    transform: scale(1.02);
-    opacity: 0.9;
-}
+.acciones { display: flex; flex-direction: column; gap: 8px; margin-top: 15px; }
+.acciones button { width: 100%; padding: 10px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; color: white; }
+#btn-generar { background: #4caf50; }
+#btn-limpiar { background: #a67c52; }
 
 /* ==========================================================================
-   ESCENARIO (RUEDA Y ANIMACIONES)
+   ESCENARIO (RUEDA Y LUCES AMBIENTALES)
    ========================================================================== */
 .escenario {
     flex: 1;
@@ -184,160 +87,164 @@ body {
     background-color: #f8f9fa;
     position: relative;
     overflow: hidden;
+    z-index: 1;
 }
 
-/* Efecto de luces ambientales dinámicas */
-.escenario::before,
-.escenario::after {
+/* Luces de Fondo */
+.escenario::before, .escenario::after {
     content: '';
     position: absolute;
-    width: 650px;
-    height: 650px;
-    filter: blur(70px);
+    width: 600px;
+    height: 600px;
+    filter: blur(80px);
     z-index: -1;
-    opacity: 0.35;
+    opacity: 0.45;
     animation: volar 12s infinite alternate;
 }
 
 .escenario::before {
-    top: -100px;
+    top: -50px;
     left: -100px;
-    background: linear-gradient(45deg, #ff0080, #ff8c00, #ffd700);
+    background: radial-gradient(circle, rgba(255, 140, 0, 0.8), transparent 70%);
 }
 
 .escenario::after {
-    bottom: -100px;
+    bottom: -50px;
     right: -100px;
-    background: linear-gradient(-45deg, #7928ca, #0070f3, #00dfd8);
+    background: radial-gradient(circle, rgba(0, 112, 243, 0.8), transparent 70%);
     animation-delay: -6s;
 }
 
 @keyframes volar {
-    from {
-        transform: rotate(0deg) scale(1);
-    }
-
-    to {
-        transform: rotate(15deg) scale(1.05);
-    }
+    from { transform: rotate(0deg) scale(1); }
+    to { transform: rotate(10deg) scale(1.1); }
 }
 
-/* Contenedor de la Rueda */
 #rueda-container {
-    width: 500px;
-    height: 500px;
+    width: 500px; 
+    height: 500px; 
     position: relative;
-    display: flex;
-    justify-content: center;
+    display: flex; 
+    justify-content: center; 
     align-items: center;
-    filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.08));
 }
 
 .centro-info {
-    width: 130px;
-    height: 130px;
-    background: white;
-    border-radius: 50%;
-    display: flex;
-    text-align: center;
+    width: 140px; 
+    height: 140px; 
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%; 
+    display: flex; 
+    justify-content: center; 
     align-items: center;
-    padding: 10px;
-    font-size: 0.75rem;
-    color: #999;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    text-align: center; 
+    padding: 10px; 
+    font-size: 0.8rem; 
+    color: #444; 
     z-index: 5;
 }
 
-/* Manchas de Color */
 .mancha {
-    position: absolute;
-    width: 110px;
-    height: 110px;
+    position: absolute; 
+    width: 100px; 
+    height: 100px; 
     border-radius: 50%;
-    display: flex;
-    justify-content: center;
+    display: flex; 
+    justify-content: center; 
     align-items: center;
-    cursor: pointer;
-    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    cursor: pointer; 
+    transition: 0.3s; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.mancha:hover {
-    transform: scale(1.15);
-    z-index: 20;
-}
-
-.mancha.mancha-demo {
-    width: 90px;
-    height: 90px;
-}
-
-.codigo-texto {
-    font-size: 0.7rem;
-    font-weight: 600;
-    padding: 3px 8px;
-    border-radius: 4px;
-    background: rgba(255, 255, 255, 0.3);
-}
-
-.mancha.mancha-demo .codigo-texto {
-    font-size: 0.55rem;
+.codigo-texto { 
+    font-size: 0.65rem; 
+    font-weight: 600; 
+    padding: 2px 6px; 
+    border-radius: 4px; 
+    background: rgba(255, 255, 255, 0.3); 
 }
 
 /* ==========================================================================
-   FEEDBACK (TOAST Y RESUMEN)
+   TOAST (CENTRADO FIJO)
    ========================================================================== */
-.resumen-config {
-    padding: 15px;
-    background-color: #fcfaf9;
-    border-left: 4px solid #a67c52;
-    border-radius: 5px;
-    font-size: 0.85rem;
-}
-
 #toast {
-    visibility: hidden;
-    position: absolute;
-    top: 50%;
+    visibility: hidden; 
+    position: fixed; 
+    top: 50%; 
     left: 50%;
     transform: translate(-50%, -50%) scale(0.8);
-    background-color: #2984eb;
-    color: #fff;
+    background-color: #2984eb; 
+    color: #fff; 
     border-radius: 50px;
-    padding: 12px 24px;
-    z-index: 1000;
-    font-weight: 600;
+    padding: 12px 25px; 
+    z-index: 10000; 
+    font-weight: 600; 
     opacity: 0;
-    pointer-events: none;
-    box-shadow: 0 8px 25px rgba(41, 132, 235, 0.4);
+    text-align: center; 
+    min-width: 200px;
 }
 
-#toast.show {
-    visibility: visible;
-    animation: popInCenter 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
-        fadeOutCenter 0.5s 2.5s forwards;
+#toast.show { 
+    visibility: visible; 
+    animation: popIn 0.4s forwards, fadeOut 0.5s 2.5s forwards; 
 }
 
-@keyframes popInCenter {
-    0% {
-        transform: translate(-50%, -50%) scale(0.5);
-        opacity: 0;
+@keyframes popIn { 
+    to { transform: translate(-50%, -50%) scale(1); opacity: 1; } 
+}
+
+@keyframes fadeOut { 
+    from { opacity: 1; transform: translate(-50%, -50%) scale(1); } 
+    to { opacity: 0; transform: translate(-50%, -50%) scale(0.9); } 
+}
+
+/* ==========================================================================
+   RESPONSIVE (ORDENADO SIN IMPORTANT)
+   ========================================================================== */
+@media (max-width: 800px) {
+    .app-container { flex-direction: column; height: auto; min-height: 100vh; overflow-x: hidden; }
+    .panel-controles { width: 100%; height: auto; padding: 15px; border-bottom: 1px solid #ddd; }
+    .brand { margin-bottom: 10px; padding: 15px; }
+    .brand h1 { font-size: 1.5rem; }
+    .brand p { display: none; }
+    .configuracion-grupo { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .brand, .acciones { grid-column: span 2; }
+
+    .escenario { 
+        flex: 1; 
+        min-height: 400px; 
+        width: 100%;
+        display: flex; 
+        justify-content: center; 
+        align-items: center;
+        position: relative;
     }
 
-    100% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 1;
+    #rueda-container {
+        transform: scale(0.65);
+        transform-origin: center center;
+        margin: 0 auto;
+    }
+
+    .escenario::before, .escenario::after {
+        width: 320px;
+        height: 320px;
+        filter: blur(50px);
     }
 }
 
-@keyframes fadeOutCenter {
-    from {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
+@media (max-width: 400px) {
+    .escenario { 
+        min-height: 350px; 
+        flex: none; 
     }
-
-    to {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0.9);
+    
+    #rueda-container { 
+        transform: scale(0.5); 
+    }
+    
+    .brand h1 { 
+        font-size: 1.2rem; 
     }
 }

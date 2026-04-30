@@ -33,6 +33,13 @@ Separación estricta de responsabilidades:
 * **Microinteracciones**: Notificaciones flotantes (**Toasts**) centradas y animaciones de "foco" en los selectores.
 * **Contraste Inteligente**: El texto de los códigos cambia automáticamente (blanco/negro) según la oscuridad del fondo.
 
+### 📱 Optimización Mobile (Responsive Design)
+
+* **Layout Dinámico:** Reestructuración de la interfaz mediante *Media Queries* para dispositivos móviles, posicionando el panel de controles en la parte superior para priorizar la visibilidad de la rueda cromática.
+* **Escalabilidad Proporcional:** Implementación de transformaciones de escala (`transform: scale`) y puntos de origen dinámicos para garantizar que la rueda de 500px sea funcional en pantallas compactas como **iPhone SE** y **Samsung S8**.
+* **Interacciones Táctiles:** Integración de eventos de JavaScript (`touchstart` y `touchend`) para replicar la experiencia de previsualización HSL/HEX sin necesidad de puntero (mouse).
+* **Gestión de Viewport:** Control de alturas mínimas (`min-height`) y desbordamiento para asegurar que las manchas de fondo y el diseño traslúcido mantengan su impacto visual sin generar scroll innecesario.
+
 ---
 
 ## 💻 Ejecución Local

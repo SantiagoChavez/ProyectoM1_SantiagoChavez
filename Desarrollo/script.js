@@ -100,7 +100,6 @@ function crearElementoMancha(x, y, hex, hsl, l, esDemo) {
     span.className = 'codigo-texto';
     span.textContent = esDemo ? hsl : hex;
 
-    // Contraste inteligente según brillo
     span.style.color = l > 60 ? '#000' : '#fff';
     span.style.background = l > 60 ? "rgba(255,255,255,0.3)" : "transparent";
 
@@ -108,9 +107,18 @@ function crearElementoMancha(x, y, hex, hsl, l, esDemo) {
         div.style.cursor = "not-allowed";
         div.onclick = () => mostrarToast("⚠️ Modo Demo: Solo previsualización HSL.");
     } else {
-        // Interactividad: cambio de texto al pasar el mouse
+        // Eventos para PC
         div.onmouseenter = () => span.textContent = hsl;
         div.onmouseleave = () => span.textContent = hex;
+
+        // Evento para Celulares (Simula el hover al tocar)
+        div.ontouchstart = () => {
+            span.textContent = hsl;
+        };
+        div.ontouchend = () => {
+            setTimeout(() => { span.textContent = hex; }, 1000);
+        };
+
         div.onclick = () => {
             const valor = (selectFormato.value === 'HSL') ? hsl : hex;
             navigator.clipboard.writeText(valor);
@@ -121,7 +129,6 @@ function crearElementoMancha(x, y, hex, hsl, l, esDemo) {
     div.appendChild(span);
     rueda.appendChild(div);
 }
-
 /* ==========================================================================
    SISTEMA DE FEEDBACK (TOAST)
    ========================================================================== */
